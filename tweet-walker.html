@@ -3,11 +3,57 @@
 </head>
 
 <body>
-  {{> hello}}
 </body>
 
-<template name="hello">
+<template name="home">
   <h1>Hello World!</h1>
-  {{greeting}}
-  <input type="button" value="Click" />
+  {{loginButtons}}
+  <a href="{{pathFor 'clumps'}}">Clumps</a>
+</template>
+
+<template name="layout">
+  {{yield}}
+</template>
+
+<template name="clumps">
+  Clumps
+  <ul>
+  {{#each clumps}}
+    {{> clump}}
+  {{/each}}
+  </ul>
+  {{> clump_new}}
+</template>
+
+<template name="clump">
+  <li><a href="{{pathFor 'clump'}}">{{name}}</a> <a href="#" class="remove">Remove</a></li>
+</template>
+
+<template name="clump_new">
+  <form>
+    <input type="text" placeholder="name" name="name" />
+    <input type="submit" />
+  </form>
+</template>
+
+<template name="spots">
+  Spots
+  <ul>
+    {{#each spots}}
+      {{> spot}}
+    {{/each}}
+  </ul>
+</template>
+
+<template name="spot">
+  <li>Spot<br />
+  {{referenceUrl}}
+  </li>
+</template>
+
+<template name="spot_new">
+  <form>
+    <input type="text" placeholder="url" name="referenceUrl" />
+    <input type="submit" />
+  </form>
 </template>
